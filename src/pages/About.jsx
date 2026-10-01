@@ -1,4 +1,5 @@
 import { useNavigate, Link } from 'react-router-dom'
+import HotelStats from '../components/HotelStats'
 import './About.css'
 
 function About() {
@@ -124,70 +125,9 @@ function About() {
       </section>
 
 
-      {/* ================= STATS ================= */}
+      {/* ================= STATS (عداد متحرك) ================= */}
 
-      <section className="about-stats-section">
-
-        <div className="about-container">
-
-          <div className="about-stats-grid">
-
-            <div className="about-stat">
-
-              <strong>15+</strong>
-
-              <span>
-                Years of
-                <br />
-                Experience
-              </span>
-
-            </div>
-
-
-            <div className="about-stat">
-
-              <strong>20+</strong>
-
-              <span>
-                Luxury
-                <br />
-                Rooms
-              </span>
-
-            </div>
-
-
-            <div className="about-stat">
-
-              <strong>98%</strong>
-
-              <span>
-                Happy
-                <br />
-                Guests
-              </span>
-
-            </div>
-
-
-            <div className="about-stat">
-
-              <strong>24/7</strong>
-
-              <span>
-                Guest
-                <br />
-                Service
-              </span>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
+      <HotelStats />
 
 
       {/* ================= VALUES ================= */}
@@ -506,12 +446,7 @@ function About() {
                   Explore Rooms
                 </Link>
 
-                <Link
-                  to="/"
-                  className="about-outline-button"
-                >
-                  Back Home
-                </Link>
+        
 
               </div>
 

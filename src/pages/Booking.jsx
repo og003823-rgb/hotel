@@ -57,18 +57,19 @@ function Booking() {
       roomId: id,
       userId: user ? user.id : null,
       ...formData,
+      payment: '',
       status: 'pending',
       bookedAt: new Date().toISOString(),
     }
 
-    // ❗ المستخدم مش مسجل → خزّن الحجز مؤقتًا وروّحه صفحة التسجيل
+    // المستخدم مش مسجل → خزّن الحجز مؤقتًا وروّحه صفحة التسجيل
     if (!user) {
       localStorage.setItem('hotelPendingBooking', JSON.stringify(newBooking))
       navigate('/register')
       return
     }
 
-    // المستخدم مسجل → أضف الحجز للقائمة (مش استبدال)
+    // المستخدم مسجل → أضف الحجز للقائمة
     setBookings((prev) => [...prev, newBooking])
 
     // تفريغ الفورم بعد الحجز
@@ -549,7 +550,7 @@ function Booking() {
                         Check In
                       </span>
                       <strong>
-                        {booking.checkIn}
+                        {booking.checkIn || '—'}
                       </strong>
                     </div>
 
@@ -558,7 +559,7 @@ function Booking() {
                         Check Out
                       </span>
                       <strong>
-                        {booking.checkOut}
+                        {booking.checkOut || '—'}
                       </strong>
                     </div>
 
@@ -568,6 +569,15 @@ function Booking() {
                       </span>
                       <strong>
                         {booking.guests}
+                      </strong>
+                    </div>
+
+                    <div>
+                      <span>
+                        Payment
+                      </span>
+                      <strong>
+                        {booking.payment || '—'}
                       </strong>
                     </div>
 

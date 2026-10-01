@@ -49,9 +49,9 @@ function Home() {
               Home
             </Link>
 
-            <a href="#hotel-about">
+            <Link to="/about">
               About
-            </a>
+            </Link>
 
             <Link to="/rooms">
               Rooms
@@ -646,19 +646,13 @@ function Home() {
 
               <div className="hotel-hero-buttons">
 
-                <Link
+                {/* <Link
                   to="/rooms"
                   className="hotel-gold-btn"
                 >
                   Book Your Room
-                </Link>
+                </Link> */}
 
-                <a
-                  href="tel:+201000000000"
-                  className="hotel-outline-btn"
-                >
-                  Call Us
-                </a>
 
               </div>
 
@@ -721,9 +715,9 @@ function Home() {
                 Rooms
               </Link>
 
-              <a href="#hotel-about">
+              <Link to="/about">
                 About Us
-              </a>
+              </Link>
 
               <Link to="/rooms">
                 Book Now

@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
+import { FaArrowLeft } from 'react-icons/fa'
 import { useAuth } from '../context/AuthContext'
 import './RoomDetails.css'
 
@@ -177,6 +178,17 @@ function RoomDetails() {
 
         <div className="rooms-container">
 
+          {/* ===== BACK TO HOME BUTTON ===== */}
+
+          <Link
+            to="/"
+            className="details-home-btn"
+          >
+            <FaArrowLeft />
+            <span>Back to Home</span>
+          </Link>
+
+
           <span className="page-subtitle">
             {room.category}
           </span>
@@ -311,7 +323,6 @@ function RoomDetails() {
                 <Link
                   to="/register"
                   onClick={() => {
-                    // مش مسجل → خزّن الغرفة المطلوبة وروّح التسجيل علطول
                     localStorage.setItem(
                       'hotelPendingBooking',
                       JSON.stringify({ roomId: room.id })

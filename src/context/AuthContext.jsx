@@ -16,7 +16,7 @@ const readJSON = (key, fallback) => {
   }
 }
 
-// إنشاء حجز حقيقي مربوط بالمستخدم في "الداتابيز"
+// إنشاء حجز مدفوع مربوط بالمستخدم
 const createBooking = (safeUser, info) => {
   const bookings = readJSON(BOOKINGS_KEY, [])
 
@@ -31,7 +31,11 @@ const createBooking = (safeUser, info) => {
     checkIn: info.checkIn || '',
     checkOut: info.checkOut || '',
     guests: info.guests || '2',
-    requests: info.requests || '',
+    payment: info.payment || '',
+    paymentStatus: info.paymentStatus || 'pending',
+    transactionId: info.transactionId || '',
+    paidAt: info.paidAt || '',
+    walletRef: info.walletRef || '',
     status: 'pending',
     bookedAt: new Date().toISOString(),
   }
@@ -74,7 +78,6 @@ export function AuthProvider({ children }) {
       lastName: data.lastName,
       email: data.email,
       phone: data.phone,
-      password: data.password,
     }
 
     localStorage.setItem(USERS_KEY, JSON.stringify([...users, newUser]))
@@ -89,7 +92,6 @@ export function AuthProvider({ children }) {
 
     setUser(safeUser)
 
-    // التسجيل + الحجز في نفس اللحظة بالتفاصيل اللي المستخدم كتبها
     const bookingCreated = bookingInfo
       ? createBooking(safeUser, bookingInfo)
       : false
@@ -104,17 +106,16 @@ export function AuthProvider({ children }) {
     return { ok: created }
   }
 
-  const login = ({ email, password }) => {
+  // الدخول بالإيميل بس
+  const login = ({ email }) => {
     const users = readJSON(USERS_KEY, [])
 
     const found = users.find(
-      (u) =>
-        u.email.toLowerCase() === email.toLowerCase() &&
-        u.password === password
+      (u) => u.email.toLowerCase() === email.toLowerCase()
     )
 
     if (!found) {
-      return { ok: false, message: 'Invalid email or password.' }
+      return { ok: false, message: 'No account found with this email.' }
     }
 
     const safeUser = {
