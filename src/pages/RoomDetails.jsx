@@ -1,146 +1,11 @@
 import { Link, useParams } from 'react-router-dom'
-import { FaArrowLeft } from 'react-icons/fa'
-import { useAuth } from '../context/AuthContext'
+import roomsData from '../data/rooms.json'
 import './RoomDetails.css'
-
-const rooms = [
-  {
-    id: 1,
-    name: 'Deluxe King Room',
-    category: 'DELUXE ROOM',
-    price: 180,
-    image:
-      'https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1200&q=80',
-    description:
-      'Elegant room with a comfortable king bed and a relaxing modern atmosphere. Perfect for guests looking for comfort and a peaceful stay.',
-    guests: '2 Guests',
-    size: '38 m²',
-    bed: 'King Bed',
-  },
-  {
-    id: 2,
-    name: 'Luxury Suite',
-    category: 'LUXURY SUITE',
-    price: 280,
-    image:
-      'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=80',
-    description:
-      'A spacious luxury suite designed for guests looking for extra comfort, privacy and an unforgettable hotel experience.',
-    guests: '3 Guests',
-    size: '55 m²',
-    bed: 'King Bed',
-  },
-  {
-    id: 3,
-    name: 'Executive Room',
-    category: 'EXECUTIVE ROOM',
-    price: 220,
-    image:
-      'https://images.unsplash.com/photo-1595576508898-0ad5c879a061?auto=format&fit=crop&w=1200&q=80',
-    description:
-      'A refined room with elegant details, premium amenities and a peaceful view.',
-    guests: '2 Guests',
-    size: '42 m²',
-    bed: 'King Bed',
-  },
-  {
-    id: 4,
-    name: 'Presidential Suite',
-    category: 'PRESIDENTIAL SUITE',
-    price: 450,
-    image:
-      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80',
-    description:
-      'Our most exclusive suite featuring generous space, exceptional luxury and premium hotel services.',
-    guests: '4 Guests',
-    size: '85 m²',
-    bed: 'King Bed',
-  },
-  {
-    id: 5,
-    name: 'Superior Double Room',
-    category: 'SUPERIOR ROOM',
-    price: 160,
-    image:
-      'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1200&q=80',
-    description:
-      'Comfortable and stylish accommodation perfect for couples or friends.',
-    guests: '2 Guests',
-    size: '35 m²',
-    bed: 'Double Bed',
-  },
-  {
-    id: 6,
-    name: 'Classic King Room',
-    category: 'CLASSIC ROOM',
-    price: 145,
-    image:
-      'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1200&q=80',
-    description:
-      'A warm and comfortable room with everything you need for a pleasant stay.',
-    guests: '2 Guests',
-    size: '32 m²',
-    bed: 'King Bed',
-  },
-  {
-    id: 7,
-    name: 'Garden View Room',
-    category: 'GARDEN ROOM',
-    price: 175,
-    image:
-      'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80',
-    description:
-      'Wake up to beautiful garden views in this peaceful and naturally bright room.',
-    guests: '2 Guests',
-    size: '36 m²',
-    bed: 'King Bed',
-  },
-  {
-    id: 8,
-    name: 'Ocean View Suite',
-    category: 'OCEAN SUITE',
-    price: 320,
-    image:
-      'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1200&q=80',
-    description:
-      'Enjoy breathtaking views and an elegant suite designed for memorable stays.',
-    guests: '3 Guests',
-    size: '60 m²',
-    bed: 'King Bed',
-  },
-  {
-    id: 9,
-    name: 'Family Room',
-    category: 'FAMILY ROOM',
-    price: 240,
-    image:
-      'https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=1200&q=80',
-    description:
-      'A spacious family-friendly room offering comfort for everyone.',
-    guests: '4 Guests',
-    size: '58 m²',
-    bed: '2 Double Beds',
-  },
-  {
-    id: 10,
-    name: 'Premium Suite',
-    category: 'PREMIUM SUITE',
-    price: 350,
-    image:
-      'https://images.unsplash.com/photo-1601918774946-25832a4be0d6?auto=format&fit=crop&w=1200&q=80',
-    description:
-      'Premium accommodation combining modern design, comfort and luxury.',
-    guests: '3 Guests',
-    size: '65 m²',
-    bed: 'King Bed',
-  },
-]
 
 function RoomDetails() {
   const { id } = useParams()
-  const { user } = useAuth()
 
-  const room = rooms.find((item) => item.id === Number(id))
+  const room = roomsData.find((item) => item.id === Number(id))
 
   if (!room) {
     return (
@@ -177,17 +42,6 @@ function RoomDetails() {
       <section className="page-header">
 
         <div className="rooms-container">
-
-          {/* ===== BACK TO HOME BUTTON ===== */}
-
-          <Link
-            to="/"
-            className="details-home-btn"
-          >
-            <FaArrowLeft />
-            <span>Back to Home</span>
-          </Link>
-
 
           <span className="page-subtitle">
             {room.category}
@@ -257,7 +111,7 @@ function RoomDetails() {
 
                   <div>
                     <strong>Guests</strong>
-                    <span>{room.guests}</span>
+                    <span>{room.capacity} Guests</span>
                   </div>
 
                 </div>
@@ -281,7 +135,7 @@ function RoomDetails() {
 
                   <div>
                     <strong>Bed Type</strong>
-                    <span>{room.bed}</span>
+                    <span>{room.beds}</span>
                   </div>
 
                 </div>
@@ -339,6 +193,8 @@ function RoomDetails() {
                 >
                   Back To Rooms
                 </Link>
+
+              
 
               </div>
 
