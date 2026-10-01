@@ -1,0 +1,396 @@
+/* ===============================================
+   REGISTER PAGE
+=============================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+.register-page {
+  min-height: 100vh;
+  background: #f7f2ea;
+  padding: 80px 24px;
+  display: flex;
+  align-items: center;
+  font-family: inherit;
+}
+
+.register-container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.register-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 64px;
+  align-items: center;
+}
+
+
+/* ===============================================
+   LEFT SIDE — INFO
+=============================================== */
+
+.register-label {
+  display: inline-block;
+  color: #c49b2c;
+  letter-spacing: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-bottom: 2px solid #c49b2c;
+  padding-bottom: 6px;
+}
+
+.register-info h2 {
+  font-size: 38px;
+  font-weight: 800;
+  color: #1f1f1f;
+  line-height: 1.3;
+  margin: 20px 0 16px;
+}
+
+.register-info-text {
+  color: #7a7a7a;
+  font-size: 15px;
+  line-height: 1.9;
+  margin: 0 0 30px;
+}
+
+.register-benefits {
+  display: grid;
+  gap: 20px;
+}
+
+.register-benefits > div {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.register-benefit-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #e8ddc3;
+  color: #c49b2c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.register-benefits strong {
+  display: block;
+  color: #1f1f1f;
+  font-size: 15px;
+  margin-bottom: 3px;
+}
+
+.register-benefits span:not(.register-benefit-icon) {
+  color: #8a8a8a;
+  font-size: 13.5px;
+}
+
+
+/* ===============================================
+   RIGHT SIDE — FORM CARD
+=============================================== */
+
+.register-form-wrapper {
+  background: #ffffff;
+  border-top: 3px solid #c49b2c;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.07);
+  padding: 44px 42px;
+}
+
+.register-form-head {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.register-form-head h2 {
+  font-size: 26px;
+  font-weight: 800;
+  color: #1f1f1f;
+  margin: 0;
+}
+
+.register-form-head p {
+  color: #8a8a8a;
+  font-size: 14px;
+  margin: 8px 0 0;
+}
+
+
+/* ===============================================
+   NOTICES
+=============================================== */
+
+.register-error {
+  background: #fdecea;
+  border-left: 3px solid #c0392b;
+  color: #96281b;
+  padding: 11px 14px;
+  font-size: 13.5px;
+  margin-bottom: 20px;
+}
+
+
+/* ===============================================
+   SECTION DIVIDER
+=============================================== */
+
+.register-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 18px;
+  color: #c49b2c;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+.register-divider::before,
+.register-divider::after {
+  content: '';
+  height: 1px;
+  background: #eee4cf;
+  flex: 1;
+}
+
+
+/* ===============================================
+   ROWS & FIELDS — كل حاجة مقاس واحد
+=============================================== */
+
+.register-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.register-field {
+  width: 100%;
+}
+
+.register-field label {
+  display: block;
+  color: #555555;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+/* —— كل الخانات نفس الشكل والمقاس —— */
+
+.register-field input,
+.register-field select {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid #e3dccb;
+  background: #fcfbf7;
+  font-size: 15px;
+  font-family: inherit;
+  color: #222222;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.register-field input::placeholder {
+  color: #b5b0a3;
+  font-size: 14px;
+}
+
+.register-field input:focus,
+.register-field select:focus {
+  border-color: #c49b2c;
+  box-shadow: 0 0 0 3px rgba(196, 155, 44, 0.12);
+}
+
+/* —— سهم الـ Select مخصوص —— */
+
+.register-field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c49b2c' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+/* —— أيقونة التاريخ —— */
+
+.register-field input[type='date'] {
+  padding-right: 12px;
+}
+
+.register-field input[type='date']::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.55;
+}
+
+
+/* ===============================================
+   PAYMENT METHOD
+=============================================== */
+
+.register-payment-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.register-payment-option {
+  cursor: pointer;
+}
+
+.register-payment-option input {
+  display: none;
+}
+
+.register-payment-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  height: 86px;
+  padding: 10px 6px;
+  border: 1px solid #e3dccb;
+  background: #fcfbf7;
+  text-align: center;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.register-payment-card:hover {
+  border-color: #c49b2c;
+}
+
+.register-payment-option input:checked + .register-payment-card {
+  border-color: #c49b2c;
+  background: #faf5e6;
+  box-shadow: 0 0 0 2px rgba(196, 155, 44, 0.18);
+}
+
+.register-payment-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+}
+
+.register-payment-name {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #1f1f1f;
+  letter-spacing: 0.3px;
+}
+
+
+/* ===============================================
+   SUBMIT BUTTON
+=============================================== */
+
+.register-submit {
+  display: block;
+  width: 100%;
+  height: 52px;
+  background: #c49b2c;
+  color: #ffffff;
+  border: none;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  margin-top: 8px;
+}
+
+.register-submit:hover {
+  background: #a98422;
+}
+
+.register-alt {
+  text-align: center;
+  margin: 20px 0 0;
+  font-size: 14px;
+  color: #8a8a8a;
+}
+
+.register-alt a {
+  color: #c49b2c;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+
+/* ===============================================
+   CENTERED STATES
+=============================================== */
+
+.register-center {
+  text-align: center;
+  color: #1f1f1f;
+}
+
+.register-center .register-label {
+  margin-bottom: 16px;
+}
+
+
+/* ===============================================
+   RESPONSIVE
+=============================================== */
+
+@media (max-width: 920px) {
+  .register-grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  .register-info h2 {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 560px) {
+  .register-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .register-form-wrapper {
+    padding: 32px 24px;
+  }
+
+  .register-page {
+    padding: 50px 16px;
+  }
+
+  .register-payment-options {
+    grid-template-columns: 1fr;
+  }
+
+  .register-payment-card {
+    flex-direction: row;
+    height: auto;
+    gap: 12px;
+    padding: 14px;
+  }
+}

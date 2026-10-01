@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #2f2f2f;
+  min-width: 320px;
+
+  /* خلفية فندقية هادئة */
+  background:
+    linear-gradient(
+      rgba(248, 245, 238, 0.96),
+      rgba(248, 245, 238, 0.96)
+    ),
+    url('./assets/hero.png');
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+button,
+a {
+  font-family: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+}
+
+/* مهم: الصور لا تتخطى حجم العنصر */
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* منع أي عنصر من عمل Scroll أفقي */
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* لون التحديد */
+
+::selection {
+  background: #c9a227;
+  color: #ffffff;
+}
