@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import Header from '../components/Header'
 import './Booking.css'
 
 const BOOKINGS_KEY = 'hotelBookings'
@@ -114,7 +115,12 @@ function Booking() {
   return (
     <main className="booking-page">
 
-      {/* ================= HEADER ================= */}
+      {/* ================= HEADER (ثابت مع السكرول) ================= */}
+
+      <Header showBookNow={true} />
+
+
+      {/* ================= PAGE HEADER ================= */}
 
       <section className="booking-header">
 
@@ -188,15 +194,17 @@ function Booking() {
 
           <div className="bookings-toolbar">
 
-            {id && (
-              <button
-                type="button"
-                className="booking-gold-btn"
-                onClick={() => setShowForm((s) => !s)}
-              >
-                {showForm ? 'Close Form' : `+ Book Room #${id}`}
-              </button>
-            )}
+            <button
+              type="button"
+              className="booking-gold-btn"
+              onClick={() => setShowForm((s) => !s)}
+            >
+              {showForm
+                ? 'Close Form'
+                : id
+                  ? `+ Book Room #${id}`
+                  : '+ New Booking'}
+            </button>
 
           </div>
 
@@ -285,7 +293,7 @@ function Booking() {
                     </div>
 
                     <p>
-                      Room ID: #{id}
+                      Room ID: #{id || '—'}
                     </p>
 
                   </div>

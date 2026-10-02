@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 import BackButton from '../components/BackButton'
-import Navbar from '../components/Navbar'
+import Header from '../components/Header'
 import useWOW from '../hooks/useWOW'
-
 import './Rooms.css'
+
 const rooms = [
   {
     id: 1,
@@ -122,19 +122,19 @@ const rooms = [
     size: '38 m²',
     bed: 'King Bed',
   },
-{
-  id: 10,
-  name: 'Superior Room',
-  category: 'SUPERIOR ROOM',
-  price: 145,
-  image:
-    'https://images.unsplash.com/photo-1601918774946-25832a4be0d6?auto=format&fit=crop&w=900&q=80',
-  description:
-    'A refined room with a king bed, cozy sofa and premium amenities for a truly comfortable stay.',
-  guests: '3 Guests',
-  size: '40 m²',
-  bed: 'King Bed + Sofa',
-},
+  {
+    id: 10,
+    name: 'Superior Room',
+    category: 'SUPERIOR ROOM',
+    price: 145,
+    image:
+      'https://images.unsplash.com/photo-1601918774946-25832a4be0d6?auto=format&fit=crop&w=900&q=80',
+    description:
+      'A refined room with a king bed, cozy sofa and premium amenities for a truly comfortable stay.',
+    guests: '3 Guests',
+    size: '40 m²',
+    bed: 'King Bed + Sofa',
+  },
   {
     id: 11,
     name: 'Garden View Room',
@@ -275,7 +275,7 @@ function Rooms() {
 
       {/* ================= HEADER (ثابت مع السكرول) ================= */}
 
-      {/* <Navbar /> */}
+      <Header showBookNow={true} />
 
 
       {/* ================= PAGE HEADER ================= */}

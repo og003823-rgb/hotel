@@ -1,13 +1,23 @@
+
 import { useEffect } from 'react'
-import { BrowserRouter, Routes, Route, useLocation, Link } from 'react-router-dom'
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation,
+  Link,
+} from 'react-router-dom'
+
 import Home from './pages/Home'
 import About from './pages/About'
 import Rooms from './pages/Rooms'
 import Details from './pages/Details'
 import Cart from './pages/Cart'
 import Booking from './pages/Booking'
+import Register from './pages/Register'
+import { AuthProvider } from './context/AuthContext'
 
-// يرجع الصفحة لفوق مع أي تنقل — لمسة رعة 😄
+// يرجع الصفحة لفوق مع أي تنقل
 function ScrollToTop() {
   const { pathname } = useLocation()
 
@@ -18,7 +28,7 @@ function ScrollToTop() {
   return null
 }
 
-// صفحة 404 شيك — خلاص مفيش صفحات فاضية تاني
+// صفحة 404
 function NotFound() {
   return (
     <main
@@ -34,7 +44,13 @@ function NotFound() {
       }}
     >
       <div>
-        <h1 style={{ fontSize: '90px', color: '#c9a227', margin: 0 }}>
+        <h1
+          style={{
+            fontSize: '90px',
+            color: '#c9a227',
+            margin: 0,
+          }}
+        >
           404
         </h1>
 
@@ -66,32 +82,38 @@ function NotFound() {
 
 function App() {
   return (
-    <BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <ScrollToTop />
 
-      <ScrollToTop />
+        <Routes>
+          {/* Home */}
+          <Route path="/" element={<Home />} />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
+          {/* About */}
+          <Route path="/about" element={<About />} />
 
-        <Route path="/about" element={<About />} />
+          {/* Rooms */}
+          <Route path="/rooms" element={<Rooms />} />
 
-        <Route path="/rooms" element={<Rooms />} />
+          {/* Room Details */}
+          <Route path="/rooms/:id" element={<Details />} />
 
-        {/* ✅ الراوت ده كان الناقص — ده اللي بيفتح صفحة الغرفة */}
+          {/* Cart */}
+          <Route path="/cart" element={<Cart />} />
 
-        <Route path="/rooms/:id" element={<Details />} />
+          {/* Register */}
+          <Route path="/register" element={<Register />} />
 
-        <Route path="/cart" element={<Cart />} />
+          {/* Booking */}
+          <Route path="/booking" element={<Booking />} />
+          <Route path="/booking/:id" element={<Booking />} />
 
-        <Route path="/booking" element={<Booking />} />
-
-        {/* أي لينك غلط → 404 بدل الصفحة الفاضية */}
-
-        <Route path="*" element={<NotFound />} />
-
-      </Routes>
-
-    </BrowserRouter>
+          {/* 404 */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   )
 }
 
