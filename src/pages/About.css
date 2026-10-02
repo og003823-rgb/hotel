@@ -626,3 +626,153 @@
     right: 10px;
   }
 }
+/* =====================================================
+   ✅ إضافات: كيرف + هافر + خطوط
+===================================================== */
+
+.about-page {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+
+.about-page h1,
+.about-page h2,
+.about-page h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* صورة المقدمة — كيرف */
+.about-intro-image img {
+  border-radius: 18px;
+  box-shadow: 0 14px 34px rgba(30, 20, 10, 0.15);
+}
+
+.about-image-badge {
+  border-radius: 20px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+/* كروت القيم — كيرف + هافر */
+.about-value-card {
+  border-radius: 16px;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.about-value-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 38px rgba(40, 25, 15, 0.16);
+}
+
+/* كروت الخدمات — كيرف + هافر */
+.about-service-card {
+  border-radius: 16px;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.about-service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 38px rgba(40, 25, 15, 0.16);
+}
+
+/* صور التجربة — كيرف */
+.about-experience-image img {
+  border-radius: 16px;
+}
+
+/* الأزرار — كيرف + هافر */
+.about-gold-button,
+.about-footer-button {
+  border-radius: 8px;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.about-gold-button:hover,
+.about-footer-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(201, 162, 39, 0.35);
+}
+/* =====================================================
+   ✅ إضافات: كيرف + هافر + خطوط
+===================================================== */
+
+.about-page {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+
+.about-page h1,
+.about-page h2,
+.about-page h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* صورة المقدمة — كيرف */
+.about-intro-image img {
+  border-radius: 18px;
+  box-shadow: 0 14px 34px rgba(30, 20, 10, 0.15);
+}
+
+.about-image-badge {
+  border-radius: 20px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+/* كروت القيم — كيرف + هافر */
+.about-value-card {
+  border-radius: 16px;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.about-value-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 38px rgba(40, 25, 15, 0.16);
+}
+
+/* كروت الخدمات — كيرف + هافر */
+.about-service-card {
+  border-radius: 16px;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.about-service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 38px rgba(40, 25, 15, 0.16);
+}
+
+/* صور التجربة — كيرف */
+.about-experience-image img {
+  border-radius: 16px;
+}
+
+/* الأزرار — كيرف + هافر */
+.about-gold-button,
+.about-footer-button {
+  border-radius: 8px;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.about-gold-button:hover,
+.about-footer-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(201, 162, 39, 0.35);
+}
+/* ✅ خلي الهافر يشتغل بعد أنيميشن WOW */
+.about-value-card:hover {
+  transform: translateY(-8px) !important;
+}
+
+.about-service-card:hover {
+  transform: translateY(-8px) !important;
+}

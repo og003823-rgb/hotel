@@ -1,9 +1,13 @@
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import useWOW from '../hooks/useWOW'
 import './Home.css'
 
 function Home() {
+  useWOW()
+
   const [showTopButton, setShowTopButton] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,78 +28,54 @@ function Home() {
     })
   }
 
+  const closeMenu = () => setMenuOpen(false)
+
   return (
     <div className="hotel-home">
 
       {/* =====================================================
-          HEADER
+          HEADER (STICKY — بينزل معاك بالسكرول)
       ===================================================== */}
 
       <header className="hotel-header">
 
         <div className="hotel-header-container">
 
-          <Link
-            to="/"
-            className="hotel-logo"
-          >
+          <Link to="/" className="hotel-logo" onClick={closeMenu}>
             HOTEL
           </Link>
 
+          <nav className={`hotel-nav ${menuOpen ? 'open' : ''}`}>
 
-          <nav className="hotel-nav">
+            <Link to="/" onClick={closeMenu}>Home</Link>
 
-            <Link to="/">
-              Home
-            </Link>
+            <Link to="/about" onClick={closeMenu}>About</Link>
 
-            <Link to="/about">
-              About
-            </Link>
+            <Link to="/rooms" onClick={closeMenu}>Rooms</Link>
 
-            <Link to="/rooms">
-              Rooms
-            </Link>
+            <a href="#hotel-experience" onClick={closeMenu}>Services</a>
 
-            <a href="#hotel-experience">
-              Services
-            </a>
+            <a href="#hotel-gallery" onClick={closeMenu}>Gallery</a>
 
-            <a href="#hotel-gallery">
-              Gallery
-            </a>
-
-            {/* MY BOOKING CARD */}
-
-            <Link
-              to="/booking"
-              className="hotel-booking-card"
-            >
-              <span className="hotel-booking-icon">
-                ♡
-              </span>
-
+            <Link to="/booking" className="hotel-booking-card" onClick={closeMenu}>
+              <span className="hotel-booking-icon">♡</span>
               <span className="hotel-booking-text">
                 <small>MY</small>
                 BOOKING
               </span>
             </Link>
 
-
-            <Link
-              to="/rooms"
-              className="hotel-nav-button"
-            >
+            <Link to="/rooms" className="hotel-nav-button" onClick={closeMenu}>
               Book Now
             </Link>
 
           </nav>
 
-
           <button
             className="hotel-menu-button"
             type="button"
             aria-label="Open menu"
+            onClick={() => setMenuOpen(!menuOpen)}
           >
             ☰
           </button>
@@ -117,34 +97,28 @@ function Home() {
 
             <div className="hotel-hero-content">
 
-              <span className="hotel-label">
+              <span className="hotel-label wow fadeInUp">
                 WELCOME TO HOTEL
               </span>
 
-              <h1>
+              <h1 className="wow fadeInUp" data-wow-delay="0.2s">
                 Experience
                 <br />
                 Luxury & Comfort
               </h1>
 
-              <p>
+              <p className="wow fadeInUp" data-wow-delay="0.4s">
                 Discover a world of elegance, comfort and exceptional
                 hospitality. Your perfect stay starts here.
               </p>
 
-              <div className="hotel-hero-buttons">
+              <div className="hotel-hero-buttons wow fadeInUp" data-wow-delay="0.6s">
 
-                <Link
-                  to="/rooms"
-                  className="hotel-gold-btn"
-                >
+                <Link to="/rooms" className="hotel-gold-btn">
                   Explore Rooms
                 </Link>
 
-                <a
-                  href="#hotel-about"
-                  className="hotel-outline-btn"
-                >
+                <a href="#hotel-about" className="hotel-outline-btn">
                   Discover More
                 </a>
 
@@ -163,40 +137,32 @@ function Home() {
           ABOUT
       ===================================================== */}
 
-      <section
-        className="hotel-about"
-        id="hotel-about"
-      >
+      <section className="hotel-about" id="hotel-about">
 
         <div className="hotel-home-container">
 
           <div className="hotel-about-grid">
 
-            <div className="hotel-about-photo">
+            <div className="hotel-about-photo wow fadeInLeft">
 
               <img
                 src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1000&q=85"
                 alt="Luxury Hotel"
               />
 
-              <div className="hotel-photo-badge">
-
-                <strong>
-                  5
-                </strong>
-
+              <div className="hotel-photo-badge wow zoomIn" data-wow-delay="0.4s">
+                <strong>5</strong>
                 <span>
                   STAR
                   <br />
                   HOTEL
                 </span>
-
               </div>
 
             </div>
 
 
-            <div className="hotel-about-text">
+            <div className="hotel-about-text wow fadeInRight">
 
               <span className="hotel-section-label">
                 ABOUT OUR HOTEL
@@ -223,17 +189,17 @@ function Home() {
 
               <div className="hotel-about-stats">
 
-                <div>
+                <div className="wow fadeInUp">
                   <strong>20+</strong>
                   <span>Luxury Rooms</span>
                 </div>
 
-                <div>
+                <div className="wow fadeInUp" data-wow-delay="0.15s">
                   <strong>15+</strong>
                   <span>Years Experience</span>
                 </div>
 
-                <div>
+                <div className="wow fadeInUp" data-wow-delay="0.3s">
                   <strong>98%</strong>
                   <span>Happy Guests</span>
                 </div>
@@ -241,10 +207,7 @@ function Home() {
               </div>
 
 
-              <Link
-                to="/rooms"
-                className="hotel-text-link"
-              >
+              <Link to="/rooms" className="hotel-text-link">
                 Discover Our Rooms →
               </Link>
 
@@ -261,14 +224,11 @@ function Home() {
           EXPERIENCE
       ===================================================== */}
 
-      <section
-        className="hotel-features"
-        id="hotel-experience"
-      >
+      <section className="hotel-features" id="hotel-experience">
 
         <div className="hotel-home-container">
 
-          <div className="hotel-heading-center">
+          <div className="hotel-heading-center wow fadeInUp">
 
             <span className="hotel-section-label">
               HOTEL EXPERIENCE
@@ -288,75 +248,43 @@ function Home() {
 
           <div className="hotel-feature-grid">
 
-            <div className="hotel-feature-card">
-
-              <div className="hotel-feature-icon">
-                01
-              </div>
-
-              <h3>
-                Luxury Rooms
-              </h3>
-
+            <div className="hotel-feature-card wow fadeInUp">
+              <div className="hotel-feature-icon">01</div>
+              <h3>Luxury Rooms</h3>
               <p>
                 Beautifully designed rooms with premium furniture,
                 comfortable beds and modern facilities.
               </p>
-
             </div>
 
 
-            <div className="hotel-feature-card">
-
-              <div className="hotel-feature-icon">
-                02
-              </div>
-
-              <h3>
-                Fine Dining
-              </h3>
-
+            <div className="hotel-feature-card wow fadeInUp" data-wow-delay="0.15s">
+              <div className="hotel-feature-icon">02</div>
+              <h3>Fine Dining</h3>
               <p>
                 Enjoy delicious meals and an unforgettable dining
                 experience prepared by our professional chefs.
               </p>
-
             </div>
 
 
-            <div className="hotel-feature-card">
-
-              <div className="hotel-feature-icon">
-                03
-              </div>
-
-              <h3>
-                Swimming Pool
-              </h3>
-
+            <div className="hotel-feature-card wow fadeInUp" data-wow-delay="0.3s">
+              <div className="hotel-feature-icon">03</div>
+              <h3>Swimming Pool</h3>
               <p>
                 Relax beside our beautiful pool and enjoy a peaceful
                 atmosphere throughout your stay.
               </p>
-
             </div>
 
 
-            <div className="hotel-feature-card">
-
-              <div className="hotel-feature-icon">
-                04
-              </div>
-
-              <h3>
-                24/7 Service
-              </h3>
-
+            <div className="hotel-feature-card wow fadeInUp" data-wow-delay="0.45s">
+              <div className="hotel-feature-icon">04</div>
+              <h3>24/7 Service</h3>
               <p>
                 Our professional team is available around the clock
                 to make sure you have everything you need.
               </p>
-
             </div>
 
           </div>
@@ -374,10 +302,9 @@ function Home() {
 
         <div className="hotel-home-container">
 
-          <div className="hotel-heading-row">
+          <div className="hotel-heading-row wow fadeInUp">
 
             <div>
-
               <span className="hotel-section-label">
                 OUR ROOMS
               </span>
@@ -385,14 +312,10 @@ function Home() {
               <h2>
                 Stay in comfort
               </h2>
-
             </div>
 
 
-            <Link
-              to="/rooms"
-              className="hotel-text-link"
-            >
+            <Link to="/rooms" className="hotel-text-link">
               View All Rooms →
             </Link>
 
@@ -404,7 +327,7 @@ function Home() {
 
             {/* ROOM 1 */}
 
-            <div className="hotel-preview-card">
+            <div className="hotel-preview-card wow fadeInUp">
 
               <div className="hotel-preview-image">
 
@@ -413,31 +336,20 @@ function Home() {
                   alt="Deluxe Room"
                 />
 
-                <span>
-                  $120 / NIGHT
-                </span>
+                <span>$120 / NIGHT</span>
 
               </div>
 
 
               <div className="hotel-preview-content">
 
-                <small>
-                  DELUXE ROOM
-                </small>
+                <small>DELUXE ROOM</small>
 
-                <h3>
-                  Deluxe Room
-                </h3>
+                <h3>Deluxe Room</h3>
 
-                <p>
-                  Elegant comfort for a relaxing stay.
-                </p>
+                <p>Elegant comfort for a relaxing stay.</p>
 
-                <Link
-                  to="/rooms/1"
-                  className="hotel-card-book"
-                >
+                <Link to="/rooms/1" className="hotel-card-book">
                   View Room
                 </Link>
 
@@ -448,7 +360,7 @@ function Home() {
 
             {/* ROOM 2 */}
 
-            <div className="hotel-preview-card">
+            <div className="hotel-preview-card wow fadeInUp" data-wow-delay="0.2s">
 
               <div className="hotel-preview-image">
 
@@ -457,31 +369,20 @@ function Home() {
                   alt="Luxury Double Room"
                 />
 
-                <span>
-                  $180 / NIGHT
-                </span>
+                <span>$180 / NIGHT</span>
 
               </div>
 
 
               <div className="hotel-preview-content">
 
-                <small>
-                  DOUBLE ROOM
-                </small>
+                <small>DOUBLE ROOM</small>
 
-                <h3>
-                  Luxury Double Room
-                </h3>
+                <h3>Luxury Double Room</h3>
 
-                <p>
-                  Spacious comfort for families and friends.
-                </p>
+                <p>Spacious comfort for families and friends.</p>
 
-                <Link
-                  to="/rooms/2"
-                  className="hotel-card-book"
-                >
+                <Link to="/rooms/2" className="hotel-card-book">
                   View Room
                 </Link>
 
@@ -492,7 +393,7 @@ function Home() {
 
             {/* ROOM 3 */}
 
-            <div className="hotel-preview-card">
+            <div className="hotel-preview-card wow fadeInUp" data-wow-delay="0.4s">
 
               <div className="hotel-preview-image">
 
@@ -501,31 +402,20 @@ function Home() {
                   alt="Executive Suite"
                 />
 
-                <span>
-                  $250 / NIGHT
-                </span>
+                <span>$250 / NIGHT</span>
 
               </div>
 
 
               <div className="hotel-preview-content">
 
-                <small>
-                  EXECUTIVE SUITE
-                </small>
+                <small>EXECUTIVE SUITE</small>
 
-                <h3>
-                  Executive Suite
-                </h3>
+                <h3>Executive Suite</h3>
 
-                <p>
-                  Premium space with exceptional comfort.
-                </p>
+                <p>Premium space with exceptional comfort.</p>
 
-                <Link
-                  to="/rooms/3"
-                  className="hotel-card-book"
-                >
+                <Link to="/rooms/3" className="hotel-card-book">
                   View Room
                 </Link>
 
@@ -544,14 +434,11 @@ function Home() {
           GALLERY
       ===================================================== */}
 
-      <section
-        className="hotel-gallery"
-        id="hotel-gallery"
-      >
+      <section className="hotel-gallery" id="hotel-gallery">
 
         <div className="hotel-home-container">
 
-          <div className="hotel-heading-center">
+          <div className="hotel-heading-center wow fadeInUp">
 
             <span className="hotel-section-label">
               HOTEL GALLERY
@@ -571,7 +458,7 @@ function Home() {
 
           <div className="hotel-gallery-grid">
 
-            <div className="hotel-gallery-item large">
+            <div className="hotel-gallery-item large wow zoomIn">
 
               <img
                 src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1000&q=85"
@@ -581,7 +468,7 @@ function Home() {
             </div>
 
 
-            <div className="hotel-gallery-item">
+            <div className="hotel-gallery-item wow zoomIn" data-wow-delay="0.15s">
 
               <img
                 src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=700&q=85"
@@ -591,7 +478,7 @@ function Home() {
             </div>
 
 
-            <div className="hotel-gallery-item">
+            <div className="hotel-gallery-item wow zoomIn" data-wow-delay="0.3s">
 
               <img
                 src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=700&q=85"
@@ -601,11 +488,21 @@ function Home() {
             </div>
 
 
-            <div className="hotel-gallery-item">
+            <div className="hotel-gallery-item wow zoomIn" data-wow-delay="0.45s">
 
               <img
                 src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=700&q=85"
                 alt="Hotel pool"
+              />
+
+            </div>
+
+
+            <div className="hotel-gallery-item wow zoomIn" data-wow-delay="0.6s">
+
+              <img
+                src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=700&q=85"
+                alt="Fine dining restaurant"
               />
 
             </div>
@@ -627,7 +524,7 @@ function Home() {
 
           <div className="hotel-home-container">
 
-            <div className="hotel-cta-content">
+            <div className="hotel-cta-content wow fadeInUp">
 
               <span className="hotel-label">
                 YOUR PERFECT STAY AWAITS

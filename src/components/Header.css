@@ -1,29 +1,28 @@
 /* =====================================================
-   HEADER
+   SITE HEADER — هيدر موحد لكل الصفحات (زي الهوم)
+   sticky بينزل معاك بالسكرول
 ===================================================== */
 
-.hotel-header {
+.site-header {
   width: 100%;
-  height: 76px;
+  min-height: 76px;
 
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
 
   z-index: 9999;
 
-  background: rgba(23, 37, 54, 0.97);
+  background: #172536;
 
   border-bottom: 2px solid #c9a227;
 
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
-
-  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
 }
 
-.hotel-header-container {
+.site-header-container {
   width: min(1180px, calc(100% - 40px));
-  height: 100%;
+  min-height: 76px;
 
   margin: 0 auto;
 
@@ -31,38 +30,44 @@
   align-items: center;
   justify-content: space-between;
 
-  gap: 25px;
+  gap: 20px;
 }
 
-.hotel-logo {
+
+/* LOGO */
+
+.site-logo {
   color: #d4af37;
 
   text-decoration: none;
 
-  font-size: 25px;
+  font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+  font-size: 26px;
   font-weight: 700;
 
   letter-spacing: 4px;
 
+  white-space: nowrap;
+
   transition: 0.25s ease;
 }
 
-.hotel-logo:hover {
-  color: #f0cf63;
+.site-logo:hover {
+  color: #f0ce62;
 }
 
 
 /* NAV */
 
-.hotel-nav {
+.site-nav {
   display: flex;
   align-items: center;
 
   gap: 5px;
 }
 
-.hotel-nav a {
-  padding: 10px 14px;
+.site-nav a {
+  padding: 10px 13px;
 
   color: #f5f1e8;
 
@@ -74,43 +79,152 @@
   transition: 0.25s ease;
 }
 
-.hotel-nav a:hover,
-.hotel-nav a.active {
+.site-nav a:hover,
+.site-nav a.active {
   color: #d4af37;
 }
 
 
-/* BOOK BUTTON */
+/* ✅ CART LINK — زي ما كان في الـ Navbar */
 
-.hotel-nav .hotel-nav-button {
+.site-cart-link {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 7px;
+}
+
+.site-cart-link svg {
+  font-size: 15px;
+}
+
+
+/* MY BOOKING CARD */
+
+.site-booking-card {
+  min-height: 45px;
+
+  margin-left: 7px;
+
+  padding: 5px 12px !important;
+
+  display: inline-flex !important;
+  align-items: center;
+  gap: 9px;
+
+  background: rgba(255, 255, 255, 0.06);
+
+  border: 1px solid rgba(212, 175, 55, 0.45);
+
+  border-radius: 10px;
+
+  color: #fff !important;
+
+  transition:
+    background 0.25s ease,
+    border 0.25s ease,
+    transform 0.25s ease;
+}
+
+.site-booking-card:hover {
+  background: #c9a227;
+
+  border-color: #c9a227;
+
+  color: #fff !important;
+
+  transform: translateY(-2px);
+}
+
+.site-booking-icon {
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(212, 175, 55, 0.8);
+
+  border-radius: 50%;
+
+  color: #d4af37;
+
+  font-size: 14px;
+}
+
+.site-booking-card:hover .site-booking-icon {
+  color: #fff;
+  border-color: #fff;
+}
+
+.site-booking-text {
+  display: flex;
+  flex-direction: column;
+
+  color: #fff;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  line-height: 1.2;
+
+  letter-spacing: 1px;
+}
+
+.site-booking-text small {
+  color: #d4af37;
+
+  font-size: 8px;
+
+  line-height: 1;
+
+  margin-bottom: 2px;
+}
+
+.site-booking-card:hover .site-booking-text small {
+  color: #fff;
+}
+
+
+/* BOOK NOW BUTTON */
+
+.site-nav .site-nav-button {
   min-height: 42px;
 
-  margin-left: 10px;
-  padding: 10px 22px;
+  margin-left: 8px;
+
+  padding: 10px 20px;
 
   display: inline-flex;
+
   align-items: center;
   justify-content: center;
 
   background: #c9a227;
 
   border: 1px solid #c9a227;
-  border-radius: 4px;
+
+  border-radius: 8px;
 
   color: #fff;
+
+  font-size: 13px;
+
+  transition: 0.25s ease;
 }
 
-.hotel-nav .hotel-nav-button:hover {
+.site-nav .site-nav-button:hover {
   background: #a8841d;
+
   border-color: #a8841d;
 
   color: #fff;
 }
 
 
-/* MOBILE BUTTON */
+/* MOBILE MENU BUTTON */
 
-.hotel-menu-button {
+.site-menu-button {
   display: none;
 
   width: 42px;
@@ -122,13 +236,14 @@
   background: transparent;
 
   border: 1px solid #d4af37;
-  border-radius: 4px;
+
+  border-radius: 8px;
 
   color: #d4af37;
 
-  font-size: 21px;
-
   cursor: pointer;
+
+  font-size: 20px;
 }
 
 
@@ -136,30 +251,50 @@
    TABLET
 ===================================================== */
 
-@media (max-width: 991px) {
+@media (max-width: 1100px) {
 
-  .hotel-header {
-    height: 70px;
+  .site-nav { gap: 0; }
+
+  .site-nav a {
+    padding-left: 9px;
+    padding-right: 9px;
   }
 
-  .hotel-header-container {
+  .site-booking-card { margin-left: 3px; }
+
+  .site-nav .site-nav-button {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+@media (max-width: 991px) {
+
+  .site-header { min-height: 70px; }
+
+  .site-header-container {
+    min-height: 70px;
     width: calc(100% - 30px);
   }
 
-  .hotel-menu-button {
-    display: flex;
-  }
+  .site-menu-button { display: flex; }
 
-  .hotel-nav {
+  .site-nav {
     position: absolute;
 
-    top: 70px;
+    top: 100%;
     left: 0;
     right: 0;
 
     display: none;
 
     flex-direction: column;
+
     align-items: stretch;
 
     padding: 15px;
@@ -168,38 +303,41 @@
 
     border-top: 1px solid rgba(212, 175, 55, 0.25);
 
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   }
 
-  .hotel-nav.open {
-    display: flex;
-  }
+  .site-nav.open { display: flex; }
 
-  .hotel-nav a {
+  .site-nav a {
     width: 100%;
-
-    padding: 13px 8px;
+    padding: 12px 8px;
   }
 
-  .hotel-nav .hotel-nav-button {
+  .site-cart-link {
+    justify-content: flex-start;
+  }
+
+  .site-booking-card {
+    margin: 8px 0 0;
+    justify-content: flex-start;
+  }
+
+  .site-nav .site-nav-button {
+    width: 100%;
     margin: 8px 0 0;
   }
 }
 
 
-/* =====================================================
-   MOBILE
-===================================================== */
-
 @media (max-width: 600px) {
 
-  .hotel-header-container {
+  .site-header-container {
     width: calc(100% - 28px);
+    min-height: 65px;
   }
 
-  .hotel-logo {
+  .site-logo {
     font-size: 21px;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
   }
-
 }

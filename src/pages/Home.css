@@ -1514,3 +1514,11 @@
   }
 
 }
+/* ✅ خلي الهافر يشتغل بعد أنيميشن WOW */
+.hotel-feature-card:hover {
+  transform: translateY(-6px) !important;
+}
+
+.hotel-preview-card:hover {
+  transform: translateY(-8px) !important;
+}

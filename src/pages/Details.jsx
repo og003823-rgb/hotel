@@ -1,187 +1,269 @@
 import { Link, useParams } from 'react-router-dom'
 import { FaUsers, FaBed, FaRulerCombined, FaCheck } from 'react-icons/fa'
+import Navbar from '../components/Navbar'
+import useWOW from '../hooks/useWOW'
 import rooms from '../data/rooms.json'
 
+// لو أي صورة اتمسحت من Unsplash دي بتظهر بدالها
+const FALLBACK_IMAGE =
+  'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1200&q=85'
+
 function Details() {
+  useWOW()
+
   const { id } = useParams()
 
   const room = rooms.find((item) => item.id === Number(id))
 
   if (!room) {
     return (
-      <main className="not-found-page">
-        <div className="container text-center py-5">
-          <h1>Room Not Found</h1>
+      <main className="details-page">
+
+        <Navbar />
+
+        <section className="page-header">
+
+          <span className="page-subtitle">
+            404
+          </span>
+
+          <h1>
+            Room Not Found
+          </h1>
 
           <p>
             Sorry, we couldn't find the room you're looking for.
           </p>
 
-          <Link to="/rooms" className="btn btn-gold">
-            Back to Rooms
-          </Link>
-        </div>
+        </section>
+
+        <section className="details-section">
+
+          <div
+            className="rooms-container"
+            style={{ textAlign: 'center', paddingBottom: '60px' }}
+          >
+
+            <Link to="/rooms" className="details-back-btn">
+              Back to Rooms
+            </Link>
+
+          </div>
+
+        </section>
+
       </main>
     )
+  }
+
+  const addToCart = () => {
+    const cart = JSON.parse(localStorage.getItem('hotelCart')) || []
+
+    const exists = cart.some((item) => item.id === room.id)
+
+    if (!exists) {
+      localStorage.setItem(
+        'hotelCart',
+        JSON.stringify([...cart, room])
+      )
+
+      alert('Room added to cart successfully!')
+    } else {
+      alert('This room is already in your cart.')
+    }
   }
 
   return (
     <main className="details-page">
 
-      <section className="page-header">
-        <div className="container text-center">
-          <p className="page-subtitle">
-            ROOM DETAILS
-          </p>
+      <Navbar />
 
-          <h1>{room.name}</h1>
+
+      {/* PAGE HEADER */}
+
+      <section className="page-header">
+
+        <div className="rooms-container wow fadeInUp">
+
+          <span className="page-subtitle">
+            ROOM DETAILS
+          </span>
+
+          <h1>
+            {room.name}
+          </h1>
 
           <p>
             Discover everything about your room.
           </p>
+
         </div>
+
       </section>
 
-      <section className="details-section py-5">
-        <div className="container">
 
-          <div className="row g-5 align-items-start">
+      {/* DETAILS */}
 
-            <div className="col-lg-7">
+      <section className="details-section">
 
-              <div className="details-image">
-                <img
-                  src={room.image}
-                  alt={room.name}
-                />
-              </div>
+        <div className="rooms-container">
+
+          <div className="details-grid">
+
+            {/* IMAGE */}
+
+            <div className="details-image wow fadeInLeft">
+
+              <img
+                src={room.image}
+                alt={room.name}
+                onError={(e) => {
+                  e.currentTarget.src = FALLBACK_IMAGE
+                }}
+              />
 
             </div>
 
-            <div className="col-lg-5">
 
-              <div className="details-content">
+            {/* CONTENT */}
 
-                <p className="room-category">
-                  {room.category}
-                </p>
+            <div className="details-content wow fadeInRight">
 
-                <h2>{room.name}</h2>
+              <span className="room-category">
+                {room.category}
+              </span>
 
-                <div className="details-price">
-                  ${room.price}
-                  <span>/ night</span>
-                </div>
+              <h2>
+                {room.name}
+              </h2>
 
-                <p className="details-description">
-                  {room.description}
-                </p>
+              <div className="details-price">
+                ${room.price}
+                <span>
+                  / night
+                </span>
+              </div>
 
-                <div className="details-info">
+              <p className="details-description">
+                {room.description}
+              </p>
+
+
+              {/* INFO */}
+
+              <div className="details-info">
+
+                <div>
+                  <span>
+                    <FaUsers />
+                  </span>
 
                   <div>
-                    <FaUsers />
+                    <strong>
+                      Guests
+                    </strong>
+
                     <span>
-                      <strong>Guests</strong>
                       {room.capacity} People
                     </span>
                   </div>
+                </div>
+
+                <div>
+                  <span>
+                    <FaBed />
+                  </span>
 
                   <div>
-                    <FaBed />
+                    <strong>
+                      Beds
+                    </strong>
+
                     <span>
-                      <strong>Beds</strong>
                       {room.beds}
                     </span>
                   </div>
+                </div>
+
+                <div>
+                  <span>
+                    <FaRulerCombined />
+                  </span>
 
                   <div>
-                    <FaRulerCombined />
+                    <strong>
+                      Room Size
+                    </strong>
+
                     <span>
-                      <strong>Room Size</strong>
                       {room.size}
                     </span>
                   </div>
+                </div>
+
+              </div>
+
+
+              {/* AMENITIES */}
+
+              <div className="amenities">
+
+                <h3>
+                  Room Amenities
+                </h3>
+
+                <div className="amenities-list">
+
+                  <span>
+                    <FaCheck />
+                    Free Wi-Fi
+                  </span>
+
+                  <span>
+                    <FaCheck />
+                    Air Conditioning
+                  </span>
+
+                  <span>
+                    <FaCheck />
+                    Smart TV
+                  </span>
+
+                  <span>
+                    <FaCheck />
+                    Room Service
+                  </span>
+
+                  <span>
+                    <FaCheck />
+                    Private Bathroom
+                  </span>
+
+                  <span>
+                    <FaCheck />
+                    Breakfast Included
+                  </span>
 
                 </div>
 
-                <div className="amenities">
+              </div>
 
-                  <h3>
-                    Room Amenities
-                  </h3>
 
-                  <div className="amenities-list">
+              {/* BUTTONS */}
 
-                    <span>
-                      <FaCheck />
-                      Free Wi-Fi
-                    </span>
+              <div className="details-buttons">
 
-                    <span>
-                      <FaCheck />
-                      Air Conditioning
-                    </span>
+                <button
+                  type="button"
+                  className="details-book-btn"
+                  onClick={addToCart}
+                >
+                  Add to Cart
+                </button>
 
-                    <span>
-                      <FaCheck />
-                      Smart TV
-                    </span>
-
-                    <span>
-                      <FaCheck />
-                      Room Service
-                    </span>
-
-                    <span>
-                      <FaCheck />
-                      Private Bathroom
-                    </span>
-
-                    <span>
-                      <FaCheck />
-                      Breakfast Included
-                    </span>
-
-                  </div>
-
-                </div>
-
-                <div className="details-actions">
-
-                  <button
-                    className="btn btn-gold btn-lg"
-                    onClick={() => {
-                      const cart =
-                        JSON.parse(localStorage.getItem('hotelCart')) || []
-
-                      const exists = cart.some(
-                        (item) => item.id === room.id
-                      )
-
-                      if (!exists) {
-                        localStorage.setItem(
-                          'hotelCart',
-                          JSON.stringify([...cart, room])
-                        )
-
-                        alert('Room added to cart successfully!')
-                      } else {
-                        alert('This room is already in your cart.')
-                      }
-                    }}
-                  >
-                    Add to Cart
-                  </button>
-
-                  <Link
-                    to="/rooms"
-                    className="btn btn-outline-dark btn-lg"
-                  >
-                    Back to Rooms
-                  </Link>
-
-                </div>
+                <Link to="/rooms" className="details-back-btn">
+                  Back to Rooms
+                </Link>
 
               </div>
 
@@ -190,6 +272,7 @@ function Details() {
           </div>
 
         </div>
+
       </section>
 
     </main>
